@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">Жива диктовка</string>
+    <string name="live_open_content_description">Жива диктовка</string>
+    <string name="live_back">Назад</string>
+    <string name="live_copy">Копіювати</string>
+    <string name="live_copied">Скопійовано</string>
+    <string name="live_share">Поділитися</string>
+    <string name="live_clear">Очистити</string>
+    <string name="live_start">Старт</string>
+    <string name="live_stop">Стоп</string>
+    <string name="live_hint">Говоріть: текст з\'являється фразами із затримкою 5–10 секунд. Використовується GigaAM, якщо встановлено, інакше вибрана модель.</string>
+    <string name="live_model">Модель: %1$s</string>
+    <string name="live_status_idle">Зупинено</string>
+    <string name="live_status_loading">Завантаження моделі…</string>
+    <string name="live_status_listening">Слухаю…</string>
+    <string name="live_status_speech">Мовлення: %1$.1f с</string>
+    <string name="live_status_finishing">Дорозпізнавання останніх фраз…</string>
+    <string name="live_status_error">Зупинено через помилку</string>
+    <string name="live_error_no_model">Немає доступної моделі розпізнавання. Завантажте GigaAM (або іншу модель) на вкладці «Моделі».</string>
+    <string name="live_error_microphone">Мікрофон недоступний або дозвіл не надано.</string>
+    <string name="live_error_busy">Триває розшифрування файлу. Спробуйте, коли воно завершиться.</string>
+    <string name="live_error_decode">Не вдалося розпізнати фразу.</string>
+    <string name="live_mic_permission_denied">Для живої диктовки потрібен дозвіл на мікрофон.</string>
+    <plurals name="live_pending">
+        <item quantity="one">%d фраза в черзі</item>
+        <item quantity="few">%d фрази в черзі</item>
+        <item quantity="many">%d фраз у черзі</item>
+        <item quantity="other">%d фрази в черзі</item>
+    </plurals>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">הכתבה חיה</string>
+    <string name="live_open_content_description">הכתבה חיה</string>
+    <string name="live_back">חזרה</string>
+    <string name="live_copy">העתקה</string>
+    <string name="live_copied">הועתק</string>
+    <string name="live_share">שיתוף</string>
+    <string name="live_clear">ניקוי</string>
+    <string name="live_start">התחלה</string>
+    <string name="live_stop">עצירה</string>
+    <string name="live_hint">דברו: הטקסט מופיע משפט אחר משפט, בהשהיה של 5–10 שניות. אם GigaAM מותקן נעשה בו שימוש, אחרת במודל שנבחר.</string>
+    <string name="live_model">מודל: %1$s</string>
+    <string name="live_status_idle">נעצר</string>
+    <string name="live_status_loading">טוען את המודל…</string>
+    <string name="live_status_listening">מאזין…</string>
+    <string name="live_status_speech">דיבור: %1$.1f ש׳</string>
+    <string name="live_status_finishing">משלים את המשפטים האחרונים…</string>
+    <string name="live_status_error">נעצר בגלל שגיאה</string>
+    <string name="live_error_no_model">אין מודל תמלול זמין. הורידו את GigaAM (או מודל אחר) בלשונית המודלים.</string>
+    <string name="live_error_microphone">המיקרופון אינו זמין או שההרשאה נדחתה.</string>
+    <string name="live_error_busy">מתבצע תמלול של קובץ. נסו שוב כשיסתיים.</string>
+    <string name="live_error_decode">לא ניתן היה לפענח משפט.</string>
+    <string name="live_mic_permission_denied">הכתבה חיה דורשת הרשאת מיקרופון.</string>
+    <plurals name="live_pending">
+        <item quantity="one">משפט %d בתור</item>
+        <item quantity="two">%d משפטים בתור</item>
+        <item quantity="other">%d משפטים בתור</item>
+    </plurals>
+</resources>

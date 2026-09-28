@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">Live-Diktat</string>
+    <string name="live_open_content_description">Live-Diktat</string>
+    <string name="live_back">Zurück</string>
+    <string name="live_copy">Kopieren</string>
+    <string name="live_copied">Kopiert</string>
+    <string name="live_share">Teilen</string>
+    <string name="live_clear">Leeren</string>
+    <string name="live_start">Start</string>
+    <string name="live_stop">Stopp</string>
+    <string name="live_hint">Sprechen Sie: Der Text erscheint Satz für Satz, 5–10 Sekunden verzögert. GigaAM wird verwendet, wenn installiert, sonst das ausgewählte Modell.</string>
+    <string name="live_model">Modell: %1$s</string>
+    <string name="live_status_idle">Gestoppt</string>
+    <string name="live_status_loading">Modell wird geladen…</string>
+    <string name="live_status_listening">Höre zu…</string>
+    <string name="live_status_speech">Sprache: %1$.1f s</string>
+    <string name="live_status_finishing">Letzte Sätze werden abgeschlossen…</string>
+    <string name="live_status_error">Wegen eines Fehlers gestoppt</string>
+    <string name="live_error_no_model">Kein Transkriptionsmodell verfügbar. Laden Sie GigaAM (oder ein anderes Modell) im Tab Modelle herunter.</string>
+    <string name="live_error_microphone">Mikrofon nicht verfügbar oder Berechtigung verweigert.</string>
+    <string name="live_error_busy">Eine Dateitranskription läuft. Versuchen Sie es nach deren Ende erneut.</string>
+    <string name="live_error_decode">Ein Satz konnte nicht dekodiert werden.</string>
+    <string name="live_mic_permission_denied">Für das Live-Diktat ist die Mikrofonberechtigung erforderlich.</string>
+    <plurals name="live_pending">
+        <item quantity="one">%d Satz in der Warteschlange</item>
+        <item quantity="other">%d Sätze in der Warteschlange</item>
+    </plurals>
+</resources>

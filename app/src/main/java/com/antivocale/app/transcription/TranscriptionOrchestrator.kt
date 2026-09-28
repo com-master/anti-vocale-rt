@@ -1273,6 +1273,20 @@ class TranscriptionOrchestrator @Inject constructor(
         )
     }
 
+    /**
+     * Live mode (phrase-by-phrase microphone decoding): makes [backendId] the
+     * warm backend through the SAME residency/load path a file request takes
+     * (variant, language, keep-alive and corruption heal included) and hands
+     * it back for direct per-phrase [TranscriptionBackend.transcribeAudio]
+     * calls. Cheap when already warm, so the live loop calls it before every
+     * phrase: a keep-alive unload or a file request that swapped the model in
+     * between is recovered here instead of decoding on a released engine.
+     */
+    suspend fun ensureLiveBackend(context: Context, backendId: String): Result<TranscriptionBackend> =
+        ensureBackendLoaded(context, backendOverride = backendId).mapCatching {
+            backendManager.getActiveBackend() ?: throw TranscriptionException.NotInitialized()
+        }
+
     private suspend fun ensureBackendLoaded(
         context: Context,
         backendOverride: String? = null,

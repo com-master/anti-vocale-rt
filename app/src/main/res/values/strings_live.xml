@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">Live dictation</string>
+    <string name="live_open_content_description">Live dictation</string>
+    <string name="live_back">Back</string>
+    <string name="live_copy">Copy</string>
+    <string name="live_copied">Copied</string>
+    <string name="live_share">Share</string>
+    <string name="live_clear">Clear</string>
+    <string name="live_start">Start</string>
+    <string name="live_stop">Stop</string>
+    <string name="live_hint">Speak: the text appears phrase by phrase, 5–10 seconds behind your voice. GigaAM is used when installed, otherwise the selected model.</string>
+    <string name="live_model">Model: %1$s</string>
+    <string name="live_status_idle">Stopped</string>
+    <string name="live_status_loading">Loading the model…</string>
+    <string name="live_status_listening">Listening…</string>
+    <string name="live_status_speech">Speech: %1$.1f s</string>
+    <string name="live_status_finishing">Finishing the last phrases…</string>
+    <string name="live_status_error">Stopped with an error</string>
+    <string name="live_error_no_model">No transcription model is available. Download GigaAM (or another model) in the Models tab.</string>
+    <string name="live_error_microphone">The microphone is unavailable or permission was denied.</string>
+    <string name="live_error_busy">A file transcription is running. Try again when it finishes.</string>
+    <string name="live_error_decode">A phrase could not be decoded.</string>
+    <string name="live_mic_permission_denied">Microphone permission is required for live dictation.</string>
+    <plurals name="live_pending">
+        <item quantity="one">%d phrase queued</item>
+        <item quantity="other">%d phrases queued</item>
+    </plurals>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">लाइव डिक्टेशन</string>
+    <string name="live_open_content_description">लाइव डिक्टेशन</string>
+    <string name="live_back">वापस</string>
+    <string name="live_copy">कॉपी करें</string>
+    <string name="live_copied">कॉपी किया गया</string>
+    <string name="live_share">शेयर करें</string>
+    <string name="live_clear">साफ़ करें</string>
+    <string name="live_start">शुरू करें</string>
+    <string name="live_stop">रोकें</string>
+    <string name="live_hint">बोलिए: टेक्स्ट वाक्यांश-दर-वाक्यांश 5–10 सेकंड की देरी से दिखता है। GigaAM इंस्टॉल हो तो उसका उपयोग होता है, नहीं तो चुने गए मॉडल का।</string>
+    <string name="live_model">मॉडल: %1$s</string>
+    <string name="live_status_idle">रुका हुआ</string>
+    <string name="live_status_loading">मॉडल लोड हो रहा है…</string>
+    <string name="live_status_listening">सुन रहा है…</string>
+    <string name="live_status_speech">वाणी: %1$.1f से</string>
+    <string name="live_status_finishing">अंतिम वाक्यांश पूरे किए जा रहे हैं…</string>
+    <string name="live_status_error">त्रुटि के कारण रुका</string>
+    <string name="live_error_no_model">कोई ट्रांसक्रिप्शन मॉडल उपलब्ध नहीं है। मॉडल टैब में GigaAM (या कोई अन्य मॉडल) डाउनलोड करें।</string>
+    <string name="live_error_microphone">माइक्रोफ़ोन उपलब्ध नहीं है या अनुमति अस्वीकार की गई।</string>
+    <string name="live_error_busy">एक फ़ाइल का ट्रांसक्रिप्शन चल रहा है। उसके पूरा होने पर फिर से प्रयास करें।</string>
+    <string name="live_error_decode">एक वाक्यांश डिकोड नहीं हो सका।</string>
+    <string name="live_mic_permission_denied">लाइव डिक्टेशन के लिए माइक्रोफ़ोन अनुमति आवश्यक है।</string>
+    <plurals name="live_pending">
+        <item quantity="one">कतार में %d वाक्यांश</item>
+        <item quantity="other">कतार में %d वाक्यांश</item>
+    </plurals>
+</resources>

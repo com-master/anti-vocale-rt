@@ -38,6 +38,10 @@
 
     <!-- Post notifications (Android 13+) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Live mode (LiveTranscriptionActivity): microphone capture while the
+         screen is in the foreground, requested at runtime on first start. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- TASK-336: OEMs (ColorOS UserAwareMgr verified on device) kill the process mid-transcription
          even with a running foreground service; the standard Play-acceptable exemption request
          for core background-function apps is the battery-optimization whitelist. -->
@@ -523,6 +527,13 @@
                 <data android:mimeType="application/mp4" />
             </intent-filter>
         </activity-alias>
+
+        <!-- Live mode: phrase-by-phrase dictation from the microphone. -->
+        <activity
+            android:name=".ui.live.LiveTranscriptionActivity"
+            android:exported="false"
+            android:label="@string/live_title"
+            android:theme="@style/Theme.AntiVocale" />
 
         <!-- Transparent trampoline for Tasker: brings app to foreground so InferenceService
              can be started legally on Android 12+. Finishes immediately, never visible. -->

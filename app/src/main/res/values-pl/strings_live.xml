@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">Dyktowanie na żywo</string>
+    <string name="live_open_content_description">Dyktowanie na żywo</string>
+    <string name="live_back">Wstecz</string>
+    <string name="live_copy">Kopiuj</string>
+    <string name="live_copied">Skopiowano</string>
+    <string name="live_share">Udostępnij</string>
+    <string name="live_clear">Wyczyść</string>
+    <string name="live_start">Start</string>
+    <string name="live_stop">Stop</string>
+    <string name="live_hint">Mów: tekst pojawia się fraza po frazie z opóźnieniem 5–10 sekund. Używany jest GigaAM, jeśli jest zainstalowany, w przeciwnym razie wybrany model.</string>
+    <string name="live_model">Model: %1$s</string>
+    <string name="live_status_idle">Zatrzymano</string>
+    <string name="live_status_loading">Wczytywanie modelu…</string>
+    <string name="live_status_listening">Słucham…</string>
+    <string name="live_status_speech">Mowa: %1$.1f s</string>
+    <string name="live_status_finishing">Kończenie ostatnich fraz…</string>
+    <string name="live_status_error">Zatrzymano z powodu błędu</string>
+    <string name="live_error_no_model">Brak dostępnego modelu transkrypcji. Pobierz GigaAM (lub inny model) na karcie Modele.</string>
+    <string name="live_error_microphone">Mikrofon jest niedostępny lub odmówiono uprawnienia.</string>
+    <string name="live_error_busy">Trwa transkrypcja pliku. Spróbuj ponownie po jej zakończeniu.</string>
+    <string name="live_error_decode">Nie udało się zdekodować frazy.</string>
+    <string name="live_mic_permission_denied">Dyktowanie na żywo wymaga uprawnienia do mikrofonu.</string>
+    <plurals name="live_pending">
+        <item quantity="one">%d fraza w kolejce</item>
+        <item quantity="few">%d frazy w kolejce</item>
+        <item quantity="many">%d fraz w kolejce</item>
+        <item quantity="other">%d frazy w kolejce</item>
+    </plurals>
+</resources>

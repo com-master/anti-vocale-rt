@@ -465,16 +465,32 @@ fun LogsTab(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { browseLauncher.launch(arrayOf("audio/*", "video/*")) },
-                modifier = Modifier
-                    .navigationBarsPadding()
-                    .tourRevealable(TourStep.BrowseFab.key, tourRevealState),
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.navigationBarsPadding(),
             ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = stringResource(R.string.browse_audio_content_description),
-                )
+                // Live mode: dictate with phrase-by-phrase decoding.
+                SmallFloatingActionButton(
+                    onClick = {
+                        context.startActivity(
+                            com.antivocale.app.ui.live.LiveTranscriptionActivity.intent(context))
+                    },
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Mic,
+                        contentDescription = stringResource(R.string.live_open_content_description),
+                    )
+                }
+                FloatingActionButton(
+                    onClick = { browseLauncher.launch(arrayOf("audio/*", "video/*")) },
+                    modifier = Modifier.tourRevealable(TourStep.BrowseFab.key, tourRevealState),
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = stringResource(R.string.browse_audio_content_description),
+                    )
+                }
             }
         },
     ) { padding ->

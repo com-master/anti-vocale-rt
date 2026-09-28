@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">Canlı dikte</string>
+    <string name="live_open_content_description">Canlı dikte</string>
+    <string name="live_back">Geri</string>
+    <string name="live_copy">Kopyala</string>
+    <string name="live_copied">Kopyalandı</string>
+    <string name="live_share">Paylaş</string>
+    <string name="live_clear">Temizle</string>
+    <string name="live_start">Başlat</string>
+    <string name="live_stop">Durdur</string>
+    <string name="live_hint">Konuşun: metin, sesinizin 5–10 saniye gerisinden ifade ifade görünür. Yüklüyse GigaAM, değilse seçili model kullanılır.</string>
+    <string name="live_model">Model: %1$s</string>
+    <string name="live_status_idle">Durduruldu</string>
+    <string name="live_status_loading">Model yükleniyor…</string>
+    <string name="live_status_listening">Dinleniyor…</string>
+    <string name="live_status_speech">Konuşma: %1$.1f sn</string>
+    <string name="live_status_finishing">Son ifadeler tamamlanıyor…</string>
+    <string name="live_status_error">Bir hata nedeniyle durdu</string>
+    <string name="live_error_no_model">Kullanılabilir bir transkripsiyon modeli yok. Modeller sekmesinden GigaAM\'i (veya başka bir modeli) indirin.</string>
+    <string name="live_error_microphone">Mikrofon kullanılamıyor veya izin reddedildi.</string>
+    <string name="live_error_busy">Bir dosya transkripsiyonu sürüyor. Bittiğinde tekrar deneyin.</string>
+    <string name="live_error_decode">Bir ifade çözümlenemedi.</string>
+    <string name="live_mic_permission_denied">Canlı dikte için mikrofon izni gerekir.</string>
+    <plurals name="live_pending">
+        <item quantity="one">Kuyrukta %d ifade</item>
+        <item quantity="other">Kuyrukta %d ifade</item>
+    </plurals>
+</resources>

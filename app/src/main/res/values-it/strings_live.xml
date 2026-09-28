@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">Dettatura dal vivo</string>
+    <string name="live_open_content_description">Dettatura dal vivo</string>
+    <string name="live_back">Indietro</string>
+    <string name="live_copy">Copia</string>
+    <string name="live_copied">Copiato</string>
+    <string name="live_share">Condividi</string>
+    <string name="live_clear">Cancella</string>
+    <string name="live_start">Avvia</string>
+    <string name="live_stop">Ferma</string>
+    <string name="live_hint">Parla: il testo appare frase per frase, con 5–10 secondi di ritardo. Viene usato GigaAM se installato, altrimenti il modello selezionato.</string>
+    <string name="live_model">Modello: %1$s</string>
+    <string name="live_status_idle">Fermo</string>
+    <string name="live_status_loading">Caricamento del modello…</string>
+    <string name="live_status_listening">In ascolto…</string>
+    <string name="live_status_speech">Voce: %1$.1f s</string>
+    <string name="live_status_finishing">Completamento delle ultime frasi…</string>
+    <string name="live_status_error">Interrotto per un errore</string>
+    <string name="live_error_no_model">Nessun modello di trascrizione disponibile. Scarica GigaAM (o un altro modello) nella scheda Modelli.</string>
+    <string name="live_error_microphone">Microfono non disponibile o permesso negato.</string>
+    <string name="live_error_busy">È in corso la trascrizione di un file. Riprova quando termina.</string>
+    <string name="live_error_decode">Impossibile decodificare una frase.</string>
+    <string name="live_mic_permission_denied">Per la dettatura dal vivo serve il permesso del microfono.</string>
+    <plurals name="live_pending">
+        <item quantity="one">%d frase in coda</item>
+        <item quantity="many">%d frasi in coda</item>
+        <item quantity="other">%d frasi in coda</item>
+    </plurals>
+</resources>

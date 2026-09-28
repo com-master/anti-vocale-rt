@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">Dictée en direct</string>
+    <string name="live_open_content_description">Dictée en direct</string>
+    <string name="live_back">Retour</string>
+    <string name="live_copy">Copier</string>
+    <string name="live_copied">Copié</string>
+    <string name="live_share">Partager</string>
+    <string name="live_clear">Effacer</string>
+    <string name="live_start">Démarrer</string>
+    <string name="live_stop">Arrêter</string>
+    <string name="live_hint">Parlez : le texte apparaît phrase par phrase, avec 5 à 10 secondes de retard. GigaAM est utilisé s\'il est installé, sinon le modèle sélectionné.</string>
+    <string name="live_model">Modèle : %1$s</string>
+    <string name="live_status_idle">Arrêté</string>
+    <string name="live_status_loading">Chargement du modèle…</string>
+    <string name="live_status_listening">Écoute…</string>
+    <string name="live_status_speech">Parole : %1$.1f s</string>
+    <string name="live_status_finishing">Finalisation des dernières phrases…</string>
+    <string name="live_status_error">Arrêté à cause d\'une erreur</string>
+    <string name="live_error_no_model">Aucun modèle de transcription disponible. Téléchargez GigaAM (ou un autre modèle) dans l\'onglet Modèles.</string>
+    <string name="live_error_microphone">Micro indisponible ou autorisation refusée.</string>
+    <string name="live_error_busy">Une transcription de fichier est en cours. Réessayez quand elle sera terminée.</string>
+    <string name="live_error_decode">Impossible de décoder une phrase.</string>
+    <string name="live_mic_permission_denied">La dictée en direct nécessite l\'autorisation du micro.</string>
+    <plurals name="live_pending">
+        <item quantity="one">%d phrase en attente</item>
+        <item quantity="many">%d phrases en attente</item>
+        <item quantity="other">%d phrases en attente</item>
+    </plurals>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live mode (LiveTranscriptionActivity): phrase-by-phrase microphone dictation. -->
+<resources>
+    <string name="live_title">دیکته زنده</string>
+    <string name="live_open_content_description">دیکته زنده</string>
+    <string name="live_back">بازگشت</string>
+    <string name="live_copy">کپی</string>
+    <string name="live_copied">کپی شد</string>
+    <string name="live_share">اشتراک‌گذاری</string>
+    <string name="live_clear">پاک کردن</string>
+    <string name="live_start">شروع</string>
+    <string name="live_stop">توقف</string>
+    <string name="live_hint">صحبت کنید: متن عبارت به عبارت با ۵ تا ۱۰ ثانیه تأخیر ظاهر می‌شود. اگر GigaAM نصب باشد از آن استفاده می‌شود، وگرنه از مدل انتخاب‌شده.</string>
+    <string name="live_model">مدل: %1$s</string>
+    <string name="live_status_idle">متوقف شد</string>
+    <string name="live_status_loading">در حال بارگیری مدل…</string>
+    <string name="live_status_listening">در حال گوش دادن…</string>
+    <string name="live_status_speech">گفتار: %1$.1f ثانیه</string>
+    <string name="live_status_finishing">در حال تکمیل آخرین عبارت‌ها…</string>
+    <string name="live_status_error">به دلیل خطا متوقف شد</string>
+    <string name="live_error_no_model">هیچ مدل رونویسی در دسترس نیست. GigaAM (یا مدل دیگری) را از زبانه مدل‌ها دانلود کنید.</string>
+    <string name="live_error_microphone">میکروفون در دسترس نیست یا مجوز رد شد.</string>
+    <string name="live_error_busy">رونویسی یک فایل در حال انجام است. پس از پایان آن دوباره تلاش کنید.</string>
+    <string name="live_error_decode">رمزگشایی یک عبارت ممکن نشد.</string>
+    <string name="live_mic_permission_denied">دیکته زنده به مجوز میکروفون نیاز دارد.</string>
+    <plurals name="live_pending">
+        <item quantity="one">%d عبارت در صف</item>
+        <item quantity="other">%d عبارت در صف</item>
+    </plurals>
+</resources>
