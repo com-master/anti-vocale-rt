@@ -7,10 +7,9 @@
     <string name="live_copy">העתקה</string>
     <string name="live_copied">הועתק</string>
     <string name="live_share">שיתוף</string>
-    <string name="live_clear">ניקוי</string>
     <string name="live_start">התחלה</string>
     <string name="live_stop">עצירה</string>
-    <string name="live_hint">דברו: הטקסט מופיע משפט אחר משפט, בהשהיה של 5–10 שניות. אם GigaAM מותקן נעשה בו שימוש, אחרת במודל שנבחר.</string>
+    <string name="live_hint">דברו: הטקסט מופיע משפט אחר משפט, בהשהיה של כמה שניות. כל סשן נשמר אוטומטית בהיסטוריה. אם GigaAM מותקן נעשה בו שימוש, אחרת במודל שנבחר.</string>
     <string name="live_model">מודל: %1$s</string>
     <string name="live_status_idle">נעצר</string>
     <string name="live_status_loading">טוען את המודל…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">מתבצע תמלול של קובץ. נסו שוב כשיסתיים.</string>
     <string name="live_error_decode">לא ניתן היה לפענח משפט.</string>
     <string name="live_mic_permission_denied">הכתבה חיה דורשת הרשאת מיקרופון.</string>
+    <string name="live_copy_timed">העתקה עם שעה</string>
+    <string name="live_roles">תפקידים</string>
+    <string name="live_status_loading_roles">טוען את מודל הדוברים…</string>
+    <string name="live_saved_history">נשמר בהיסטוריה תוך כדי דיבור</string>
+    <string name="live_saved_file">נשמר בהיסטוריה ובקובץ %1$s</string>
+    <string name="live_error_roles">התפקידים אינם זמינים (מודל הדוברים לא נטען); ממשיכים בלעדיהם.</string>
     <plurals name="live_pending">
         <item quantity="one">משפט %d בתור</item>
         <item quantity="two">%d משפטים בתור</item>

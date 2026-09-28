@@ -7,10 +7,9 @@
     <string name="live_copy">Copiar</string>
     <string name="live_copied">Copiado</string>
     <string name="live_share">Compartilhar</string>
-    <string name="live_clear">Limpar</string>
     <string name="live_start">Iniciar</string>
     <string name="live_stop">Parar</string>
-    <string name="live_hint">Fale: o texto aparece frase por frase, com 5–10 segundos de atraso. O GigaAM é usado quando instalado; caso contrário, o modelo selecionado.</string>
+    <string name="live_hint">Fale: o texto aparece frase por frase, com alguns segundos de atraso. Cada sessão é salva automaticamente no Histórico. O GigaAM é usado quando instalado; caso contrário, o modelo selecionado.</string>
     <string name="live_model">Modelo: %1$s</string>
     <string name="live_status_idle">Parado</string>
     <string name="live_status_loading">Carregando o modelo…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">Uma transcrição de arquivo está em andamento. Tente novamente quando terminar.</string>
     <string name="live_error_decode">Não foi possível decodificar uma frase.</string>
     <string name="live_mic_permission_denied">O ditado ao vivo precisa da permissão do microfone.</string>
+    <string name="live_copy_timed">Copiar com horário</string>
+    <string name="live_roles">Papéis</string>
+    <string name="live_status_loading_roles">Carregando o modelo de falantes…</string>
+    <string name="live_saved_history">Salvo no Histórico enquanto você fala</string>
+    <string name="live_saved_file">Salvo no Histórico e no arquivo %1$s</string>
+    <string name="live_error_roles">Papéis indisponíveis (o modelo de falantes não carregou); continuando sem eles.</string>
     <plurals name="live_pending">
         <item quantity="one">%d frase na fila</item>
         <item quantity="many">%d frases na fila</item>

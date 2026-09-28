@@ -73,5 +73,11 @@ data class ProcessingContext(
          * track (the SubtitleChoice "use subtitles" arm); no model ran.
          */
         const val DECODE_PATH_SUBTITLE_TRACK = "subtitle_track"
+
+        /**
+         * Live mode: a microphone session decoded phrase by phrase
+         * (LiveTranscriptionViewModel); one chunk per phrase.
+         */
+        const val DECODE_PATH_LIVE = "live_phrases"
     }
 }

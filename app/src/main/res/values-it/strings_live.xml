@@ -7,10 +7,9 @@
     <string name="live_copy">Copia</string>
     <string name="live_copied">Copiato</string>
     <string name="live_share">Condividi</string>
-    <string name="live_clear">Cancella</string>
     <string name="live_start">Avvia</string>
     <string name="live_stop">Ferma</string>
-    <string name="live_hint">Parla: il testo appare frase per frase, con 5–10 secondi di ritardo. Viene usato GigaAM se installato, altrimenti il modello selezionato.</string>
+    <string name="live_hint">Parla: il testo appare frase per frase, con pochi secondi di ritardo. Ogni sessione viene salvata automaticamente nella Cronologia. Viene usato GigaAM se installato, altrimenti il modello selezionato.</string>
     <string name="live_model">Modello: %1$s</string>
     <string name="live_status_idle">Fermo</string>
     <string name="live_status_loading">Caricamento del modello…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">È in corso la trascrizione di un file. Riprova quando termina.</string>
     <string name="live_error_decode">Impossibile decodificare una frase.</string>
     <string name="live_mic_permission_denied">Per la dettatura dal vivo serve il permesso del microfono.</string>
+    <string name="live_copy_timed">Copia con orario</string>
+    <string name="live_roles">Ruoli</string>
+    <string name="live_status_loading_roles">Caricamento del modello dei parlanti…</string>
+    <string name="live_saved_history">Salvato nella Cronologia mentre parli</string>
+    <string name="live_saved_file">Salvato nella Cronologia e nel file %1$s</string>
+    <string name="live_error_roles">Ruoli non disponibili (il modello dei parlanti non si è caricato); si continua senza.</string>
     <plurals name="live_pending">
         <item quantity="one">%d frase in coda</item>
         <item quantity="many">%d frasi in coda</item>

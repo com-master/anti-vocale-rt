@@ -7,10 +7,9 @@
     <string name="live_copy">Copiar</string>
     <string name="live_copied">Copiado</string>
     <string name="live_share">Compartir</string>
-    <string name="live_clear">Borrar</string>
     <string name="live_start">Iniciar</string>
     <string name="live_stop">Detener</string>
-    <string name="live_hint">Habla: el texto aparece frase a frase, con 5–10 segundos de retraso. Se usa GigaAM si está instalado; si no, el modelo seleccionado.</string>
+    <string name="live_hint">Habla: el texto aparece frase a frase, con unos segundos de retraso. Cada sesión se guarda automáticamente en el Historial. Se usa GigaAM si está instalado; si no, el modelo seleccionado.</string>
     <string name="live_model">Modelo: %1$s</string>
     <string name="live_status_idle">Detenido</string>
     <string name="live_status_loading">Cargando el modelo…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">Hay una transcripción de archivo en curso. Inténtalo cuando termine.</string>
     <string name="live_error_decode">No se pudo decodificar una frase.</string>
     <string name="live_mic_permission_denied">El dictado en vivo necesita permiso de micrófono.</string>
+    <string name="live_copy_timed">Copiar con hora</string>
+    <string name="live_roles">Roles</string>
+    <string name="live_status_loading_roles">Cargando el modelo de hablantes…</string>
+    <string name="live_saved_history">Se guarda en el Historial mientras hablas</string>
+    <string name="live_saved_file">Guardado en el Historial y en el archivo %1$s</string>
+    <string name="live_error_roles">Los roles no están disponibles (no se pudo cargar el modelo de hablantes); se continúa sin ellos.</string>
     <plurals name="live_pending">
         <item quantity="one">%d frase en cola</item>
         <item quantity="many">%d frases en cola</item>

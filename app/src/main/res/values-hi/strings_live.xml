@@ -7,10 +7,9 @@
     <string name="live_copy">कॉपी करें</string>
     <string name="live_copied">कॉपी किया गया</string>
     <string name="live_share">शेयर करें</string>
-    <string name="live_clear">साफ़ करें</string>
     <string name="live_start">शुरू करें</string>
     <string name="live_stop">रोकें</string>
-    <string name="live_hint">बोलिए: टेक्स्ट वाक्यांश-दर-वाक्यांश 5–10 सेकंड की देरी से दिखता है। GigaAM इंस्टॉल हो तो उसका उपयोग होता है, नहीं तो चुने गए मॉडल का।</string>
+    <string name="live_hint">बोलिए: टेक्स्ट वाक्यांश-दर-वाक्यांश कुछ सेकंड की देरी से दिखता है। हर सत्र अपने-आप इतिहास में सहेजा जाता है। GigaAM इंस्टॉल हो तो उसका उपयोग होता है, नहीं तो चुने गए मॉडल का।</string>
     <string name="live_model">मॉडल: %1$s</string>
     <string name="live_status_idle">रुका हुआ</string>
     <string name="live_status_loading">मॉडल लोड हो रहा है…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">एक फ़ाइल का ट्रांसक्रिप्शन चल रहा है। उसके पूरा होने पर फिर से प्रयास करें।</string>
     <string name="live_error_decode">एक वाक्यांश डिकोड नहीं हो सका।</string>
     <string name="live_mic_permission_denied">लाइव डिक्टेशन के लिए माइक्रोफ़ोन अनुमति आवश्यक है।</string>
+    <string name="live_copy_timed">समय के साथ कॉपी करें</string>
+    <string name="live_roles">भूमिकाएँ</string>
+    <string name="live_status_loading_roles">वक्ता मॉडल लोड हो रहा है…</string>
+    <string name="live_saved_history">बोलते समय इतिहास में सहेजा जा रहा है</string>
+    <string name="live_saved_file">इतिहास में और फ़ाइल %1$s में सहेजा गया</string>
+    <string name="live_error_roles">भूमिकाएँ उपलब्ध नहीं हैं (वक्ता मॉडल लोड नहीं हुआ); उनके बिना जारी है।</string>
     <plurals name="live_pending">
         <item quantity="one">कतार में %d वाक्यांश</item>
         <item quantity="other">कतार में %d वाक्यांश</item>

@@ -7,10 +7,9 @@
     <string name="live_copy">Kopieren</string>
     <string name="live_copied">Kopiert</string>
     <string name="live_share">Teilen</string>
-    <string name="live_clear">Leeren</string>
     <string name="live_start">Start</string>
     <string name="live_stop">Stopp</string>
-    <string name="live_hint">Sprechen Sie: Der Text erscheint Satz für Satz, 5–10 Sekunden verzögert. GigaAM wird verwendet, wenn installiert, sonst das ausgewählte Modell.</string>
+    <string name="live_hint">Sprechen Sie: Der Text erscheint Satz für Satz, wenige Sekunden verzögert. Jede Sitzung wird automatisch im Verlauf gespeichert. GigaAM wird verwendet, wenn installiert, sonst das ausgewählte Modell.</string>
     <string name="live_model">Modell: %1$s</string>
     <string name="live_status_idle">Gestoppt</string>
     <string name="live_status_loading">Modell wird geladen…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">Eine Dateitranskription läuft. Versuchen Sie es nach deren Ende erneut.</string>
     <string name="live_error_decode">Ein Satz konnte nicht dekodiert werden.</string>
     <string name="live_mic_permission_denied">Für das Live-Diktat ist die Mikrofonberechtigung erforderlich.</string>
+    <string name="live_copy_timed">Mit Uhrzeit kopieren</string>
+    <string name="live_roles">Sprecherrollen</string>
+    <string name="live_status_loading_roles">Sprechermodell wird geladen…</string>
+    <string name="live_saved_history">Wird während des Sprechens im Verlauf gespeichert</string>
+    <string name="live_saved_file">Im Verlauf und in der Datei %1$s gespeichert</string>
+    <string name="live_error_roles">Sprecherrollen nicht verfügbar (das Sprechermodell konnte nicht geladen werden); es geht ohne sie weiter.</string>
     <plurals name="live_pending">
         <item quantity="one">%d Satz in der Warteschlange</item>
         <item quantity="other">%d Sätze in der Warteschlange</item>

@@ -7,10 +7,9 @@
     <string name="live_copy">Kopiuj</string>
     <string name="live_copied">Skopiowano</string>
     <string name="live_share">Udostępnij</string>
-    <string name="live_clear">Wyczyść</string>
     <string name="live_start">Start</string>
     <string name="live_stop">Stop</string>
-    <string name="live_hint">Mów: tekst pojawia się fraza po frazie z opóźnieniem 5–10 sekund. Używany jest GigaAM, jeśli jest zainstalowany, w przeciwnym razie wybrany model.</string>
+    <string name="live_hint">Mów: tekst pojawia się fraza po frazie z kilkusekundowym opóźnieniem. Każda sesja jest automatycznie zapisywana w Historii. Używany jest GigaAM, jeśli jest zainstalowany, w przeciwnym razie wybrany model.</string>
     <string name="live_model">Model: %1$s</string>
     <string name="live_status_idle">Zatrzymano</string>
     <string name="live_status_loading">Wczytywanie modelu…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">Trwa transkrypcja pliku. Spróbuj ponownie po jej zakończeniu.</string>
     <string name="live_error_decode">Nie udało się zdekodować frazy.</string>
     <string name="live_mic_permission_denied">Dyktowanie na żywo wymaga uprawnienia do mikrofonu.</string>
+    <string name="live_copy_timed">Kopiuj z czasem</string>
+    <string name="live_roles">Role</string>
+    <string name="live_status_loading_roles">Wczytywanie modelu mówców…</string>
+    <string name="live_saved_history">Zapisywane w Historii na bieżąco</string>
+    <string name="live_saved_file">Zapisano w Historii i w pliku %1$s</string>
+    <string name="live_error_roles">Role są niedostępne (nie udało się wczytać modelu mówców); kontynuuję bez nich.</string>
     <plurals name="live_pending">
         <item quantity="one">%d fraza w kolejce</item>
         <item quantity="few">%d frazy w kolejce</item>

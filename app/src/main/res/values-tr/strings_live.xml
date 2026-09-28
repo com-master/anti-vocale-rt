@@ -7,10 +7,9 @@
     <string name="live_copy">Kopyala</string>
     <string name="live_copied">Kopyalandı</string>
     <string name="live_share">Paylaş</string>
-    <string name="live_clear">Temizle</string>
     <string name="live_start">Başlat</string>
     <string name="live_stop">Durdur</string>
-    <string name="live_hint">Konuşun: metin, sesinizin 5–10 saniye gerisinden ifade ifade görünür. Yüklüyse GigaAM, değilse seçili model kullanılır.</string>
+    <string name="live_hint">Konuşun: metin, sesinizin birkaç saniye gerisinden ifadeler hâlinde görünür. Her oturum otomatik olarak Geçmiş\'e kaydedilir. Yüklüyse GigaAM, değilse seçili model kullanılır.</string>
     <string name="live_model">Model: %1$s</string>
     <string name="live_status_idle">Durduruldu</string>
     <string name="live_status_loading">Model yükleniyor…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">Bir dosya transkripsiyonu sürüyor. Bittiğinde tekrar deneyin.</string>
     <string name="live_error_decode">Bir ifade çözümlenemedi.</string>
     <string name="live_mic_permission_denied">Canlı dikte için mikrofon izni gerekir.</string>
+    <string name="live_copy_timed">Saatle kopyala</string>
+    <string name="live_roles">Roller</string>
+    <string name="live_status_loading_roles">Konuşmacı modeli yükleniyor…</string>
+    <string name="live_saved_history">Konuştukça Geçmiş\'e kaydediliyor</string>
+    <string name="live_saved_file">Geçmiş\'e ve %1$s dosyasına kaydedildi</string>
+    <string name="live_error_roles">Roller kullanılamıyor (konuşmacı modeli yüklenemedi); onlarsız devam ediliyor.</string>
     <plurals name="live_pending">
         <item quantity="one">Kuyrukta %d ifade</item>
         <item quantity="other">Kuyrukta %d ifade</item>

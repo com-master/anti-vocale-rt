@@ -20,12 +20,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.FilterChip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import com.antivocale.app.transcription.TimedSegment
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ContentCopy
-import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Stop
@@ -43,6 +50,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -122,8 +130,13 @@ fun LiveTranscriptionScreen(
     }
 
     LaunchedEffect(state.isRunning) { onKeepScreenOn(state.isRunning) }
-    LaunchedEffect(state.phrases.size) {
-        if (state.phrases.isNotEmpty()) listState.animateScrollToItem(state.phrases.lastIndex)
+    LaunchedEffect(state.segments.size) {
+        if (state.segments.isNotEmpty()) listState.animateScrollToItem(state.segments.lastIndex)
+    }
+
+    fun copy(text: String) {
+        ClipboardWriter.copy(context, context.getString(R.string.live_title), text)
+        ToastCompat.show(context, R.string.live_copied)
     }
 
     Scaffold(
@@ -136,28 +149,22 @@ fun LiveTranscriptionScreen(
                     }
                 },
                 actions = {
-                    val hasText = state.fullText.isNotEmpty()
+                    IconButton(enabled = state.hasText, onClick = { copy(state.plainText) }) {
+                        Icon(Icons.Default.ContentCopy, contentDescription = stringResource(R.string.live_copy))
+                    }
+                    IconButton(enabled = state.hasText, onClick = { copy(state.timedText) }) {
+                        Icon(Icons.Default.Schedule, contentDescription = stringResource(R.string.live_copy_timed))
+                    }
                     IconButton(
-                        enabled = hasText,
-                        onClick = {
-                            ClipboardWriter.copy(context, context.getString(R.string.live_title), state.fullText)
-                            ToastCompat.show(context, R.string.live_copied)
-                        },
-                    ) { Icon(Icons.Default.ContentCopy, contentDescription = stringResource(R.string.live_copy)) }
-                    IconButton(
-                        enabled = hasText,
+                        enabled = state.hasText,
                         onClick = {
                             val send = Intent(Intent.ACTION_SEND).apply {
                                 type = "text/plain"
-                                putExtra(Intent.EXTRA_TEXT, state.fullText)
+                                putExtra(Intent.EXTRA_TEXT, state.timedText)
                             }
                             context.startActivity(Intent.createChooser(send, null))
                         },
                     ) { Icon(Icons.Default.Share, contentDescription = stringResource(R.string.live_share)) }
-                    IconButton(
-                        enabled = hasText && !state.isRunning,
-                        onClick = { viewModel.clear() },
-                    ) { Icon(Icons.Default.Delete, contentDescription = stringResource(R.string.live_clear)) }
                 },
             )
         },
@@ -182,9 +189,9 @@ fun LiveTranscriptionScreen(
                 .padding(padding)
                 .padding(horizontal = 16.dp),
         ) {
-            StatusHeader(state)
+            StatusHeader(state, onRolesChange = viewModel::setRolesEnabled)
             Spacer(Modifier.height(8.dp))
-            if (state.phrases.isEmpty()) {
+            if (state.segments.isEmpty()) {
                 Text(
                     text = stringResource(R.string.live_hint),
                     style = MaterialTheme.typography.bodyMedium,
@@ -192,25 +199,17 @@ fun LiveTranscriptionScreen(
                     modifier = Modifier.padding(vertical = 24.dp),
                 )
             }
+            val clock = remember { SimpleDateFormat("HH:mm:ss", Locale.getDefault()) }
             SelectionContainer(modifier = Modifier.weight(1f)) {
                 LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
-                    itemsIndexed(state.phrases) { _, phrase ->
-                        Row(modifier = Modifier.padding(vertical = 6.dp)) {
-                            Text(
-                                text = formatClock(phrase.startSeconds),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.width(48.dp).padding(top = 3.dp),
-                            )
-                            // The shared render cap (CLAUDE.md): a looping decode
-                            // must not blow Compose's constraint limit here either.
-                            CappedTranscriptText(
-                                text = phrase.text,
-                                searchQuery = "",
-                                container = MaterialTheme.colorScheme.surface,
-                                style = MaterialTheme.typography.bodyLarge,
-                            )
-                        }
+                    itemsIndexed(state.segments) { index, segment ->
+                        val newTurn = segment.speaker != null &&
+                            segment.speaker != state.segments.getOrNull(index - 1)?.speaker
+                        PhraseRow(
+                            segment = segment,
+                            time = clock.format(Date(state.sessionStartWallMs + segment.startMs)),
+                            showSpeaker = newTurn,
+                        )
                     }
                 }
             }
@@ -221,18 +220,72 @@ fun LiveTranscriptionScreen(
 }
 
 @Composable
-private fun StatusHeader(state: LiveTranscriptionViewModel.LiveUiState) {
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        state.backendName?.let {
+private fun PhraseRow(segment: TimedSegment, time: String, showSpeaker: Boolean) {
+    Column(modifier = Modifier.padding(vertical = 4.dp)) {
+        if (showSpeaker) {
+            LiveTranscriptFormat.speakerLabel(segment)?.let { label ->
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = speakerColor(segment.speaker ?: 0),
+                    modifier = Modifier.padding(top = 6.dp),
+                )
+            }
+        }
+        Row {
             Text(
-                text = stringResource(R.string.live_model, it),
-                style = MaterialTheme.typography.labelMedium,
+                text = time,
+                style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.width(64.dp).padding(top = 3.dp),
             )
+            // The shared render cap (CLAUDE.md): a looping decode
+            // must not blow Compose's constraint limit here either.
+            CappedTranscriptText(
+                text = segment.text,
+                searchQuery = "",
+                container = MaterialTheme.colorScheme.surface,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        }
+    }
+}
+
+@Composable
+private fun speakerColor(speaker: Int): Color {
+    val scheme = MaterialTheme.colorScheme
+    val palette = listOf(scheme.primary, scheme.tertiary, scheme.secondary, scheme.error)
+    return palette[speaker % palette.size]
+}
+
+@Composable
+private fun StatusHeader(
+    state: LiveTranscriptionViewModel.LiveUiState,
+    onRolesChange: (Boolean) -> Unit,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            FilterChip(
+                selected = state.rolesEnabled,
+                enabled = !state.isRunning,
+                onClick = { onRolesChange(!state.rolesEnabled) },
+                label = { Text(stringResource(R.string.live_roles)) },
+            )
+            Spacer(Modifier.width(12.dp))
+            state.backendName?.let {
+                Text(
+                    text = stringResource(R.string.live_model, it),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
         val statusText = when (state.status) {
             Status.IDLE -> stringResource(R.string.live_status_idle)
-            Status.LOADING -> stringResource(R.string.live_status_loading)
+            Status.LOADING ->
+                if (state.preparingRoles) stringResource(R.string.live_status_loading_roles)
+                else stringResource(R.string.live_status_loading)
             Status.LISTENING ->
                 if (state.speaking) stringResource(R.string.live_status_speech, state.bufferedSeconds)
                 else stringResource(R.string.live_status_listening)
@@ -255,19 +308,24 @@ private fun StatusHeader(state: LiveTranscriptionViewModel.LiveUiState) {
         } else if (state.status == Status.LISTENING) {
             LinearProgressIndicator(progress = { state.level }, modifier = Modifier.fillMaxWidth())
         }
+        if (state.savedToHistory) {
+            val saved = state.savedFileName?.let { stringResource(R.string.live_saved_file, it) }
+                ?: stringResource(R.string.live_saved_history)
+            Text(
+                text = saved,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
         state.error?.let { kind ->
             val message = when (kind) {
                 ErrorKind.NO_MODEL -> stringResource(R.string.live_error_no_model)
                 ErrorKind.MICROPHONE -> stringResource(R.string.live_error_microphone)
                 ErrorKind.BUSY -> stringResource(R.string.live_error_busy)
                 ErrorKind.DECODE -> stringResource(R.string.live_error_decode)
+                ErrorKind.ROLES_UNAVAILABLE -> stringResource(R.string.live_error_roles)
             }
             Text(text = message, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
         }
     }
-}
-
-private fun formatClock(seconds: Float): String {
-    val total = seconds.toInt().coerceAtLeast(0)
-    return "%d:%02d".format(total / 60, total % 60)
 }

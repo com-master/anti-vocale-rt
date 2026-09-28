@@ -7,10 +7,9 @@
     <string name="live_copy">کپی</string>
     <string name="live_copied">کپی شد</string>
     <string name="live_share">اشتراک‌گذاری</string>
-    <string name="live_clear">پاک کردن</string>
     <string name="live_start">شروع</string>
     <string name="live_stop">توقف</string>
-    <string name="live_hint">صحبت کنید: متن عبارت به عبارت با ۵ تا ۱۰ ثانیه تأخیر ظاهر می‌شود. اگر GigaAM نصب باشد از آن استفاده می‌شود، وگرنه از مدل انتخاب‌شده.</string>
+    <string name="live_hint">صحبت کنید: متن عبارت به عبارت با چند ثانیه تأخیر ظاهر می‌شود. هر جلسه به‌طور خودکار در تاریخچه ذخیره می‌شود. اگر GigaAM نصب باشد از آن استفاده می‌شود، وگرنه از مدل انتخاب‌شده.</string>
     <string name="live_model">مدل: %1$s</string>
     <string name="live_status_idle">متوقف شد</string>
     <string name="live_status_loading">در حال بارگیری مدل…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">رونویسی یک فایل در حال انجام است. پس از پایان آن دوباره تلاش کنید.</string>
     <string name="live_error_decode">رمزگشایی یک عبارت ممکن نشد.</string>
     <string name="live_mic_permission_denied">دیکته زنده به مجوز میکروفون نیاز دارد.</string>
+    <string name="live_copy_timed">کپی با زمان</string>
+    <string name="live_roles">نقش‌ها</string>
+    <string name="live_status_loading_roles">در حال بارگیری مدل گوینده…</string>
+    <string name="live_saved_history">هنگام صحبت در تاریخچه ذخیره می‌شود</string>
+    <string name="live_saved_file">در تاریخچه و در فایل %1$s ذخیره شد</string>
+    <string name="live_error_roles">نقش‌ها در دسترس نیستند (مدل گوینده بارگیری نشد)؛ بدون آن‌ها ادامه می‌دهیم.</string>
     <plurals name="live_pending">
         <item quantity="one">%d عبارت در صف</item>
         <item quantity="other">%d عبارت در صف</item>

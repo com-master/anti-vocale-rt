@@ -7,10 +7,9 @@
     <string name="live_copy">Copier</string>
     <string name="live_copied">Copié</string>
     <string name="live_share">Partager</string>
-    <string name="live_clear">Effacer</string>
     <string name="live_start">Démarrer</string>
     <string name="live_stop">Arrêter</string>
-    <string name="live_hint">Parlez : le texte apparaît phrase par phrase, avec 5 à 10 secondes de retard. GigaAM est utilisé s\'il est installé, sinon le modèle sélectionné.</string>
+    <string name="live_hint">Parlez : le texte apparaît phrase par phrase, avec quelques secondes de retard. Chaque session est enregistrée automatiquement dans l\'historique. GigaAM est utilisé s\'il est installé, sinon le modèle sélectionné.</string>
     <string name="live_model">Modèle : %1$s</string>
     <string name="live_status_idle">Arrêté</string>
     <string name="live_status_loading">Chargement du modèle…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">Une transcription de fichier est en cours. Réessayez quand elle sera terminée.</string>
     <string name="live_error_decode">Impossible de décoder une phrase.</string>
     <string name="live_mic_permission_denied">La dictée en direct nécessite l\'autorisation du micro.</string>
+    <string name="live_copy_timed">Copier avec l\'heure</string>
+    <string name="live_roles">Rôles</string>
+    <string name="live_status_loading_roles">Chargement du modèle des locuteurs…</string>
+    <string name="live_saved_history">Enregistré dans l\'historique au fil de la parole</string>
+    <string name="live_saved_file">Enregistré dans l\'historique et dans le fichier %1$s</string>
+    <string name="live_error_roles">Rôles indisponibles (le modèle des locuteurs n\'a pas pu être chargé) ; on continue sans.</string>
     <plurals name="live_pending">
         <item quantity="one">%d phrase en attente</item>
         <item quantity="many">%d phrases en attente</item>

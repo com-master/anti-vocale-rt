@@ -7,10 +7,9 @@
     <string name="live_copy">Copy</string>
     <string name="live_copied">Copied</string>
     <string name="live_share">Share</string>
-    <string name="live_clear">Clear</string>
     <string name="live_start">Start</string>
     <string name="live_stop">Stop</string>
-    <string name="live_hint">Speak: the text appears phrase by phrase, 5–10 seconds behind your voice. GigaAM is used when installed, otherwise the selected model.</string>
+    <string name="live_hint">Speak: the text appears phrase by phrase, a few seconds behind your voice. Each session is saved to History automatically. GigaAM is used when installed, otherwise the selected model.</string>
     <string name="live_model">Model: %1$s</string>
     <string name="live_status_idle">Stopped</string>
     <string name="live_status_loading">Loading the model…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">A file transcription is running. Try again when it finishes.</string>
     <string name="live_error_decode">A phrase could not be decoded.</string>
     <string name="live_mic_permission_denied">Microphone permission is required for live dictation.</string>
+    <string name="live_copy_timed">Copy with time</string>
+    <string name="live_roles">Speaker roles</string>
+    <string name="live_status_loading_roles">Loading the speaker model…</string>
+    <string name="live_saved_history">Saved to History as you speak</string>
+    <string name="live_saved_file">Saved to History and to the file %1$s</string>
+    <string name="live_error_roles">Speaker roles are unavailable (the speaker model could not load); continuing without them.</string>
     <plurals name="live_pending">
         <item quantity="one">%d phrase queued</item>
         <item quantity="other">%d phrases queued</item>

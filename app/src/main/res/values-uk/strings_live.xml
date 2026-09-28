@@ -7,10 +7,9 @@
     <string name="live_copy">Копіювати</string>
     <string name="live_copied">Скопійовано</string>
     <string name="live_share">Поділитися</string>
-    <string name="live_clear">Очистити</string>
     <string name="live_start">Старт</string>
     <string name="live_stop">Стоп</string>
-    <string name="live_hint">Говоріть: текст з\'являється фразами із затримкою 5–10 секунд. Використовується GigaAM, якщо встановлено, інакше вибрана модель.</string>
+    <string name="live_hint">Говоріть: текст з\'являється фразами із затримкою в кілька секунд. Кожна сесія автоматично зберігається в Історію. Використовується GigaAM, якщо встановлено, інакше вибрана модель.</string>
     <string name="live_model">Модель: %1$s</string>
     <string name="live_status_idle">Зупинено</string>
     <string name="live_status_loading">Завантаження моделі…</string>
@@ -23,6 +22,12 @@
     <string name="live_error_busy">Триває розшифрування файлу. Спробуйте, коли воно завершиться.</string>
     <string name="live_error_decode">Не вдалося розпізнати фразу.</string>
     <string name="live_mic_permission_denied">Для живої диктовки потрібен дозвіл на мікрофон.</string>
+    <string name="live_copy_timed">Копіювати з часом</string>
+    <string name="live_roles">Ролі</string>
+    <string name="live_status_loading_roles">Завантаження моделі спікерів…</string>
+    <string name="live_saved_history">Зберігається в Історію по ходу</string>
+    <string name="live_saved_file">Збережено в Історію та у файл %1$s</string>
+    <string name="live_error_roles">Ролі недоступні (модель спікерів не завантажилася), продовжую без них.</string>
     <plurals name="live_pending">
         <item quantity="one">%d фраза в черзі</item>
         <item quantity="few">%d фрази в черзі</item>
