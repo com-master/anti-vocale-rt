@@ -42,6 +42,10 @@
     <!-- Live mode (LiveTranscriptionActivity): microphone capture while the
          screen is in the foreground, requested at runtime on first start. -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Live mode keeps recording with the screen off: a microphone-type
+         foreground service plus a partial wake lock for the session. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- TASK-336: OEMs (ColorOS UserAwareMgr verified on device) kill the process mid-transcription
          even with a running foreground service; the standard Play-acceptable exemption request
          for core background-function apps is the battery-optimization whitelist. -->
@@ -532,6 +536,7 @@
         <activity
             android:name=".ui.live.LiveTranscriptionActivity"
             android:exported="false"
+            android:launchMode="singleTop"
             android:label="@string/live_title"
             android:theme="@style/Theme.AntiVocale" />
 
@@ -585,6 +590,13 @@
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="ai_inference" />
         </service>
+
+        <!-- Live mode: microphone capture + phrase decoding with the screen off -->
+        <service
+            android:name=".service.live.LiveTranscriptionService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
 
         <!-- Foreground service for model download + extraction -->
         <service

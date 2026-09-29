@@ -34,4 +34,10 @@
         <item quantity="many">%d фраз в очереди</item>
         <item quantity="other">%d фразы в очереди</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d фраза</item>
+        <item quantity="few">%d фразы</item>
+        <item quantity="many">%d фраз</item>
+        <item quantity="other">%d фразы</item>
+    </plurals>
 </resources>

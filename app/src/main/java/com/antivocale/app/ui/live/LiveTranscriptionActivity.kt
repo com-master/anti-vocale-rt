@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -67,8 +66,9 @@ import com.antivocale.app.ui.theme.fromName
 import com.antivocale.app.ui.theme.ThemeMode
 import com.antivocale.app.ui.theme.ThemeType
 import com.antivocale.app.ui.viewmodel.LiveTranscriptionViewModel
-import com.antivocale.app.ui.viewmodel.LiveTranscriptionViewModel.ErrorKind
-import com.antivocale.app.ui.viewmodel.LiveTranscriptionViewModel.Status
+import com.antivocale.app.service.live.LiveSessionController
+import com.antivocale.app.service.live.LiveSessionController.ErrorKind
+import com.antivocale.app.service.live.LiveSessionController.Status
 import com.antivocale.app.util.ClipboardWriter
 import com.antivocale.app.util.ToastCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,7 +76,7 @@ import javax.inject.Inject
 
 /**
  * Live mode screen: dictate into the microphone, text appears phrase by phrase
- * (5..10 s behind speech). See [LiveTranscriptionViewModel] for the pipeline.
+ * (5..10 s behind speech). See [com.antivocale.app.service.live.LiveSessionController] for the pipeline.
  */
 @AndroidEntryPoint
 class LiveTranscriptionActivity : ComponentActivity() {
@@ -96,10 +96,6 @@ class LiveTranscriptionActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     LiveTranscriptionScreen(
                         onBack = { finish() },
-                        onKeepScreenOn = { on ->
-                            if (on) window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                            else window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                        },
                     )
                 }
             }
@@ -115,7 +111,6 @@ class LiveTranscriptionActivity : ComponentActivity() {
 @Composable
 fun LiveTranscriptionScreen(
     onBack: () -> Unit,
-    onKeepScreenOn: (Boolean) -> Unit,
     viewModel: LiveTranscriptionViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsState()
@@ -129,7 +124,6 @@ fun LiveTranscriptionScreen(
         else ToastCompat.show(context, R.string.live_mic_permission_denied)
     }
 
-    LaunchedEffect(state.isRunning) { onKeepScreenOn(state.isRunning) }
     LaunchedEffect(state.segments.size) {
         if (state.segments.isNotEmpty()) listState.animateScrollToItem(state.segments.lastIndex)
     }
@@ -261,7 +255,7 @@ private fun speakerColor(speaker: Int): Color {
 
 @Composable
 private fun StatusHeader(
-    state: LiveTranscriptionViewModel.LiveUiState,
+    state: LiveSessionController.LiveUiState,
     onRolesChange: (Boolean) -> Unit,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {

@@ -42,6 +42,7 @@ class ReservedNotificationIdContractTest {
     fun `reserved base sits above every fixed and banded notification id`() {
         val base = ResultNotificationFactory.RESULT_NOTIFICATION_ID_BASE
         assertTrue(InferenceService.NOTIFICATION_ID < base)
+        assertTrue(com.antivocale.app.service.live.LiveTranscriptionService.NOTIFICATION_ID < base)
         assertTrue(CrashQuarantineCheck.NOTIFICATION_ID < base)
         assertTrue(SuspendedRunRecovery.NOTIFICATION_ID < base)
         assertTrue(TranscriptionOrchestrator.MEMORY_MARGIN_WARNING_ID < base)
@@ -62,6 +63,8 @@ class ReservedNotificationIdContractTest {
     fun `every notification id band is pairwise disjoint`() {
         val intervals = listOf(
             "inference-foreground" to (InferenceService.NOTIFICATION_ID..InferenceService.NOTIFICATION_ID),
+            "live-dictation-foreground" to (com.antivocale.app.service.live.LiveTranscriptionService.NOTIFICATION_ID..
+                com.antivocale.app.service.live.LiveTranscriptionService.NOTIFICATION_ID),
             "crash-quarantine-fixed" to (CrashQuarantineCheck.NOTIFICATION_ID..CrashQuarantineCheck.NOTIFICATION_ID),
             "memory-margin-warning-fixed" to (TranscriptionOrchestrator.MEMORY_MARGIN_WARNING_ID..TranscriptionOrchestrator.MEMORY_MARGIN_WARNING_ID),
             "worker-foreground" to (SubtitleChoiceTimeoutWorker.NOTIFICATION_ID..SubtitleChoiceTimeoutWorker.NOTIFICATION_ID),

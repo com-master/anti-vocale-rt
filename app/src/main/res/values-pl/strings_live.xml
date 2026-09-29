@@ -34,4 +34,10 @@
         <item quantity="many">%d fraz w kolejce</item>
         <item quantity="other">%d frazy w kolejce</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d fraza</item>
+        <item quantity="few">%d frazy</item>
+        <item quantity="many">%d fraz</item>
+        <item quantity="other">%d frazy</item>
+    </plurals>
 </resources>

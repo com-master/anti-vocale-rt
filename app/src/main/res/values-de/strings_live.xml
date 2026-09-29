@@ -32,4 +32,8 @@
         <item quantity="one">%d Satz in der Warteschlange</item>
         <item quantity="other">%d Sätze in der Warteschlange</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d Satz</item>
+        <item quantity="other">%d Sätze</item>
+    </plurals>
 </resources>

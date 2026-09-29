@@ -32,4 +32,8 @@
         <item quantity="one">%d phrase queued</item>
         <item quantity="other">%d phrases queued</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d phrase</item>
+        <item quantity="other">%d phrases</item>
+    </plurals>
 </resources>

@@ -33,4 +33,9 @@
         <item quantity="two">%d משפטים בתור</item>
         <item quantity="other">%d משפטים בתור</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">משפט %d</item>
+        <item quantity="two">%d משפטים</item>
+        <item quantity="other">%d משפטים</item>
+    </plurals>
 </resources>

@@ -33,4 +33,9 @@
         <item quantity="many">%d frases en cola</item>
         <item quantity="other">%d frases en cola</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d frase</item>
+        <item quantity="many">%d frases</item>
+        <item quantity="other">%d frases</item>
+    </plurals>
 </resources>

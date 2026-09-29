@@ -32,4 +32,8 @@
         <item quantity="one">Kuyrukta %d ifade</item>
         <item quantity="other">Kuyrukta %d ifade</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d ifade</item>
+        <item quantity="other">%d ifade</item>
+    </plurals>
 </resources>

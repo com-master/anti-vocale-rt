@@ -32,4 +32,8 @@
         <item quantity="one">%d عبارت در صف</item>
         <item quantity="other">%d عبارت در صف</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d عبارت</item>
+        <item quantity="other">%d عبارت</item>
+    </plurals>
 </resources>

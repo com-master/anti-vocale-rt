@@ -33,4 +33,9 @@
         <item quantity="many">%d frasi in coda</item>
         <item quantity="other">%d frasi in coda</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d frase</item>
+        <item quantity="many">%d frasi</item>
+        <item quantity="other">%d frasi</item>
+    </plurals>
 </resources>

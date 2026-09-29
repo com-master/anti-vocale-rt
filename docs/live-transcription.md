@@ -78,9 +78,23 @@ one label.
   in the chosen export format (TXT / timed TXT / SRT / VTT).
 - Each Start begins a new session and a new row.
 
-## Limits
+## Background and screen off
 
-- Foreground only: the screen keeps itself on while listening; Android blocks
-  microphone capture for background apps without a microphone foreground
-  service, which this mode does not start. Closing the screen mid-session
-  keeps what was decoded (History row, folder file) and drops the queue.
+The session lives in `service/live/LiveSessionController` (a process-lifetime
+singleton on `@ApplicationScope`), not in the screen's ViewModel.
+`LiveTranscriptionService` wraps it:
+
+- a `microphone`-type foreground service (started from the Start button, while
+  the app is visible, as Android 14+ requires), so AudioRecord keeps
+  delivering audio with the screen off or the app in the background;
+- a partial wake lock for the session (6 h cap), so decoding is not stalled by
+  doze;
+- an ongoing notification (id 1007, reserved-range contract) with the last
+  phrase and a Stop action; tapping it reopens the live screen.
+
+The service stops itself once the session is no longer running, after the
+tail phrases are decoded and the file export is written. Closing the screen
+no longer ends the session; only Stop (screen or notification) does.
+
+On aggressive OEM skins (Realme/ColorOS and similar) the app's battery setting
+may still need "Unrestricted" / "Allow background activity".

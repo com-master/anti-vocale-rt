@@ -32,4 +32,8 @@
         <item quantity="one">कतार में %d वाक्यांश</item>
         <item quantity="other">कतार में %d वाक्यांश</item>
     </plurals>
+    <plurals name="live_notification_phrases">
+        <item quantity="one">%d वाक्यांश</item>
+        <item quantity="other">%d वाक्यांश</item>
+    </plurals>
 </resources>
