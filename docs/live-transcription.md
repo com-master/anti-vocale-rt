@@ -78,6 +78,23 @@ one label.
   in the chosen export format (TXT / timed TXT / SRT / VTT).
 - Each Start begins a new session and a new row.
 
+## Quiet speakers (Microphone panel)
+
+Collapsed "Microphone" panel on the live screen, all values remembered:
+
+- **Gain** x1..x10: applied to every captured frame BEFORE the speech
+  detector (`AudioLevel.applyGain`, tanh soft-knee above 0.8 instead of hard
+  clipping). Takes effect immediately, also mid-session; the level meter is
+  dB-scaled (-60..0 dBFS) so its effect is visible.
+- **Sensitivity** 0..100%: the Silero threshold, 0.7 (clear speech only) down
+  to 0.2 (whispers, more false triggers); default 60% = 0.4. The detector is
+  built at session start, so a change applies to the next start.
+- **Auto-level** (default on): every phrase is leveled to about -20 dBFS
+  before decoding and embedding (`AudioLevel.normalizePhrase`: RMS over the
+  louder half of 20 ms blocks, at most +20 dB, peak kept under 0.95, never
+  attenuates), plus the device's own AGC and noise suppressor on the capture
+  session when the hardware offers them (VOICE_RECOGNITION leaves them off).
+
 ## Background and screen off
 
 The session lives in `service/live/LiveSessionController` (a process-lifetime

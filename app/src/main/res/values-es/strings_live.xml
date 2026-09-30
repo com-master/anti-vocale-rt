@@ -28,6 +28,11 @@
     <string name="live_saved_history">Se guarda en el Historial mientras hablas</string>
     <string name="live_saved_file">Guardado en el Historial y en el archivo %1$s</string>
     <string name="live_error_roles">Los roles no están disponibles (no se pudo cargar el modelo de hablantes); se continúa sin ellos.</string>
+    <string name="live_mic_settings">Micrófono</string>
+    <string name="live_gain">Ganancia: ×%1$.1f</string>
+    <string name="live_sensitivity">Sensibilidad: %1$d%%</string>
+    <string name="live_sensitivity_next">La sensibilidad se aplica desde el próximo inicio</string>
+    <string name="live_auto_level">Nivelar automáticamente la voz baja</string>
     <plurals name="live_pending">
         <item quantity="one">%d frase en cola</item>
         <item quantity="many">%d frases en cola</item>

@@ -28,6 +28,11 @@
     <string name="live_saved_history">बोलते समय इतिहास में सहेजा जा रहा है</string>
     <string name="live_saved_file">इतिहास में और फ़ाइल %1$s में सहेजा गया</string>
     <string name="live_error_roles">भूमिकाएँ उपलब्ध नहीं हैं (वक्ता मॉडल लोड नहीं हुआ); उनके बिना जारी है।</string>
+    <string name="live_mic_settings">माइक्रोफ़ोन</string>
+    <string name="live_gain">गेन: ×%1$.1f</string>
+    <string name="live_sensitivity">संवेदनशीलता: %1$d%%</string>
+    <string name="live_sensitivity_next">संवेदनशीलता अगली शुरुआत से लागू होगी</string>
+    <string name="live_auto_level">धीमी आवाज़ को अपने-आप बराबर करें</string>
     <plurals name="live_pending">
         <item quantity="one">कतार में %d वाक्यांश</item>
         <item quantity="other">कतार में %d वाक्यांश</item>

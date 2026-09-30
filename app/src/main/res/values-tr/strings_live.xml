@@ -28,6 +28,11 @@
     <string name="live_saved_history">Konuştukça Geçmiş\'e kaydediliyor</string>
     <string name="live_saved_file">Geçmiş\'e ve %1$s dosyasına kaydedildi</string>
     <string name="live_error_roles">Roller kullanılamıyor (konuşmacı modeli yüklenemedi); onlarsız devam ediliyor.</string>
+    <string name="live_mic_settings">Mikrofon</string>
+    <string name="live_gain">Kazanç: ×%1$.1f</string>
+    <string name="live_sensitivity">Hassasiyet: %%%1$d</string>
+    <string name="live_sensitivity_next">Hassasiyet bir sonraki başlatmada uygulanır</string>
+    <string name="live_auto_level">Kısık sesi otomatik dengele</string>
     <plurals name="live_pending">
         <item quantity="one">Kuyrukta %d ifade</item>
         <item quantity="other">Kuyrukta %d ifade</item>

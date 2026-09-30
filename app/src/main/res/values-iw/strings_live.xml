@@ -28,6 +28,11 @@
     <string name="live_saved_history">נשמר בהיסטוריה תוך כדי דיבור</string>
     <string name="live_saved_file">נשמר בהיסטוריה ובקובץ %1$s</string>
     <string name="live_error_roles">התפקידים אינם זמינים (מודל הדוברים לא נטען); ממשיכים בלעדיהם.</string>
+    <string name="live_mic_settings">מיקרופון</string>
+    <string name="live_gain">הגברה: ×%1$.1f</string>
+    <string name="live_sensitivity">רגישות: %1$d%%</string>
+    <string name="live_sensitivity_next">הרגישות תחול מההפעלה הבאה</string>
+    <string name="live_auto_level">יישור אוטומטי של דיבור שקט</string>
     <plurals name="live_pending">
         <item quantity="one">משפט %d בתור</item>
         <item quantity="two">%d משפטים בתור</item>

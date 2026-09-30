@@ -26,6 +26,12 @@ class LiveTranscriptionViewModel @Inject constructor(
 
     fun setRolesEnabled(enabled: Boolean) = controller.setRolesEnabled(enabled)
 
+    fun setMicGain(gain: Float) = controller.setMicGain(gain)
+
+    fun setSensitivity(sensitivity: Float) = controller.setSensitivity(sensitivity)
+
+    fun setAutoLevel(enabled: Boolean) = controller.setAutoLevel(enabled)
+
     /** Starts through the foreground service (must be called while the screen is visible). */
     fun start() = LiveTranscriptionService.start(appContext)
 

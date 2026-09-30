@@ -28,6 +28,11 @@
     <string name="live_saved_history">Сохраняется в Историю по ходу</string>
     <string name="live_saved_file">Сохранено в Историю и в файл %1$s</string>
     <string name="live_error_roles">Роли недоступны (модель спикеров не загрузилась), продолжаю без них.</string>
+    <string name="live_mic_settings">Микрофон</string>
+    <string name="live_gain">Усиление: ×%1$.1f</string>
+    <string name="live_sensitivity">Чувствительность: %1$d%%</string>
+    <string name="live_sensitivity_next">Чувствительность применится со следующего старта</string>
+    <string name="live_auto_level">Автовыравнивание громкости</string>
     <plurals name="live_pending">
         <item quantity="one">%d фраза в очереди</item>
         <item quantity="few">%d фразы в очереди</item>

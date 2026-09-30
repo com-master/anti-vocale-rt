@@ -18,11 +18,21 @@ interface SpeechDetector : AutoCloseable {
     companion object {
         private const val TAG = "SpeechDetector"
 
-        /** Silero VAD (the bundled model), falling back to energy when it cannot load. */
-        fun create(context: Context, threads: Int = 1): SpeechDetector =
-            runCatching { SileroSpeechDetector(context, threads) }
+        /**
+         * Silero VAD (the bundled model), falling back to energy when it cannot
+         * load. [sensitivity] 0..1 maps to the Silero threshold through
+         * [AudioLevel.vadThreshold] (higher = quieter speech counts).
+         */
+        fun create(context: Context, sensitivity: Float = DEFAULT_SENSITIVITY, threads: Int = 1): SpeechDetector =
+            runCatching { SileroSpeechDetector(context, threads, AudioLevel.vadThreshold(sensitivity)) }
                 .onFailure { Log.w(TAG, "Silero VAD unavailable, using the energy detector", it) }
-                .getOrElse { EnergySpeechDetector() }
+                .getOrElse {
+                    // Same direction for the fallback: 0.02 (insensitive) .. 0.004 (sensitive).
+                    EnergySpeechDetector(minThreshold = 0.02f - 0.016f * sensitivity.coerceIn(0f, 1f))
+                }
+
+        /** 0.6 -> Silero threshold 0.4: a bit more permissive than the file path's 0.5. */
+        const val DEFAULT_SENSITIVITY = 0.6f
     }
 }
 
@@ -31,13 +41,13 @@ interface SpeechDetector : AutoCloseable {
  * path's [com.antivocale.app.audio.VadProcessor] uses). The VAD's own silence
  * hysteresis is kept short: pause lengths are the segmenter's decision.
  */
-class SileroSpeechDetector(context: Context, threads: Int) : SpeechDetector {
+class SileroSpeechDetector(context: Context, threads: Int, threshold: Float = 0.5f) : SpeechDetector {
     private val vad = Vad(
         context.assets,
         VadModelConfig().apply {
             sileroVadModelConfig = SileroVadModelConfig(
                 model = MODEL_PATH,
-                threshold = 0.5f,
+                threshold = threshold,
                 minSilenceDuration = 0.1f,
                 minSpeechDuration = 0.1f,
                 windowSize = WINDOW_SIZE,

@@ -28,6 +28,11 @@
     <string name="live_saved_history">Enregistré dans l\'historique au fil de la parole</string>
     <string name="live_saved_file">Enregistré dans l\'historique et dans le fichier %1$s</string>
     <string name="live_error_roles">Rôles indisponibles (le modèle des locuteurs n\'a pas pu être chargé) ; on continue sans.</string>
+    <string name="live_mic_settings">Micro</string>
+    <string name="live_gain">Gain : ×%1$.1f</string>
+    <string name="live_sensitivity">Sensibilité : %1$d%%</string>
+    <string name="live_sensitivity_next">La sensibilité s\'applique au prochain démarrage</string>
+    <string name="live_auto_level">Niveler automatiquement la voix faible</string>
     <plurals name="live_pending">
         <item quantity="one">%d phrase en attente</item>
         <item quantity="many">%d phrases en attente</item>

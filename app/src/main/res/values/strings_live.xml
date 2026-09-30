@@ -28,6 +28,11 @@
     <string name="live_saved_history">Saved to History as you speak</string>
     <string name="live_saved_file">Saved to History and to the file %1$s</string>
     <string name="live_error_roles">Speaker roles are unavailable (the speaker model could not load); continuing without them.</string>
+    <string name="live_mic_settings">Microphone</string>
+    <string name="live_gain">Gain: ×%1$.1f</string>
+    <string name="live_sensitivity">Sensitivity: %1$d%%</string>
+    <string name="live_sensitivity_next">Sensitivity applies from the next start</string>
+    <string name="live_auto_level">Auto-level quiet speech</string>
     <plurals name="live_pending">
         <item quantity="one">%d phrase queued</item>
         <item quantity="other">%d phrases queued</item>

@@ -11,6 +11,7 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import com.antivocale.app.R
+import com.antivocale.app.audio.live.AudioLevel
 import com.antivocale.app.audio.live.PhraseSegmenter
 import com.antivocale.app.audio.live.SileroSpeechDetector
 import com.antivocale.app.audio.live.SpeechDetector
@@ -105,6 +106,12 @@ class LiveSessionController @Inject constructor(
         val bufferedSeconds: Float = 0f,
         val level: Float = 0f,
         val rolesEnabled: Boolean = true,
+        /** Microphone gain applied before the speech detector (1..10). */
+        val micGain: Float = 1f,
+        /** Speech-detector sensitivity 0..1 (higher = quieter speech opens a phrase). */
+        val sensitivity: Float = SpeechDetector.DEFAULT_SENSITIVITY,
+        /** Per-phrase loudness leveling + the platform AGC/noise suppressor. */
+        val autoLevel: Boolean = true,
         /** True while the speaker model is downloaded/loaded at session start. */
         val preparingRoles: Boolean = false,
         val speakerCount: Int = 0,
@@ -123,7 +130,14 @@ class LiveSessionController @Inject constructor(
 
     private val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
 
-    private val _state = MutableStateFlow(LiveUiState(rolesEnabled = prefs.getBoolean(KEY_ROLES, true)))
+    private val _state = MutableStateFlow(
+        LiveUiState(
+            rolesEnabled = prefs.getBoolean(KEY_ROLES, true),
+            micGain = prefs.getFloat(KEY_GAIN, 1f).coerceIn(AudioLevel.MIN_GAIN, AudioLevel.MAX_GAIN),
+            sensitivity = prefs.getFloat(KEY_SENSITIVITY, SpeechDetector.DEFAULT_SENSITIVITY).coerceIn(0f, 1f),
+            autoLevel = prefs.getBoolean(KEY_AUTO_LEVEL, true),
+        )
+    )
     val state: StateFlow<LiveUiState> = _state.asStateFlow()
 
     private var sessionJob: Job? = null
@@ -137,6 +151,26 @@ class LiveSessionController @Inject constructor(
         if (_state.value.isRunning) return
         prefs.edit { putBoolean(KEY_ROLES, enabled) }
         _state.update { it.copy(rolesEnabled = enabled) }
+    }
+
+    /** Takes effect immediately, also mid-session (read on every frame). */
+    fun setMicGain(gain: Float) {
+        val g = gain.coerceIn(AudioLevel.MIN_GAIN, AudioLevel.MAX_GAIN)
+        prefs.edit { putFloat(KEY_GAIN, g) }
+        _state.update { it.copy(micGain = g) }
+    }
+
+    /** The detector is built at session start: applies to the next session. */
+    fun setSensitivity(sensitivity: Float) {
+        val v = sensitivity.coerceIn(0f, 1f)
+        prefs.edit { putFloat(KEY_SENSITIVITY, v) }
+        _state.update { it.copy(sensitivity = v) }
+    }
+
+    /** Leveling applies immediately; the platform AGC/noise suppressor at the next session. */
+    fun setAutoLevel(enabled: Boolean) {
+        prefs.edit { putBoolean(KEY_AUTO_LEVEL, enabled) }
+        _state.update { it.copy(autoLevel = enabled) }
     }
 
     /** Starts a NEW session (the previous one is already saved in History). */
@@ -154,6 +188,9 @@ class LiveSessionController @Inject constructor(
                 status = Status.LOADING,
                 backendName = it.backendName,
                 rolesEnabled = roles,
+                micGain = it.micGain,
+                sensitivity = it.sensitivity,
+                autoLevel = it.autoLevel,
                 sessionStartWallMs = System.currentTimeMillis(),
             )
         }
@@ -254,7 +291,9 @@ class LiveSessionController @Inject constructor(
             return
         }
 
-        val detector = SpeechDetector.create(appContext)
+        val settings = _state.value
+        val effects = if (settings.autoLevel) attachPlatformEffects(record.audioSessionId) else emptyList()
+        val detector = SpeechDetector.create(appContext, settings.sensitivity)
         // With roles on, a phrase closes at a short pause after 3 s instead of
         // 5 s: speaker turns usually sit on such pauses, and a phrase mixing
         // two voices can carry only one label.
@@ -276,13 +315,15 @@ class LiveSessionController @Inject constructor(
                 }
                 val samples = if (read == frameSize) frame else FloatArray(read)
                 for (i in 0 until read) samples[i] = pcm[i] / 32768f
+                // Gain BEFORE the detector: quiet speech must be able to open a phrase.
+                AudioLevel.applyGain(samples, _state.value.micGain)
                 val speech = detector.isSpeech(samples)
                 segmenter.accept(samples, speech)?.let { enqueue(out, it) }
 
                 val now = System.currentTimeMillis()
                 if (now - lastUiUpdate >= UI_UPDATE_MS) {
                     lastUiUpdate = now
-                    val level = (PhraseSegmenter.rms(samples) * LEVEL_GAIN).coerceIn(0f, 1f)
+                    val level = meterLevel(PhraseSegmenter.rms(samples))
                     _state.update {
                         it.copy(speaking = speech, bufferedSeconds = segmenter.bufferedSeconds, level = level)
                     }
@@ -295,10 +336,35 @@ class LiveSessionController @Inject constructor(
             fail(ErrorKind.MICROPHONE, e.message)
         } finally {
             runCatching { record.stop() }
+            effects.forEach { runCatching { it.release() } }
             record.release()
             detector.close()
             _state.update { it.copy(speaking = false, bufferedSeconds = 0f, level = 0f) }
         }
+    }
+
+    /**
+     * The device's own AGC and noise suppressor on the capture session, when
+     * the hardware offers them (VOICE_RECOGNITION leaves both off by default).
+     */
+    private fun attachPlatformEffects(sessionId: Int): List<android.media.audiofx.AudioEffect> = buildList {
+        runCatching {
+            if (android.media.audiofx.AutomaticGainControl.isAvailable()) {
+                android.media.audiofx.AutomaticGainControl.create(sessionId)?.apply { enabled = true }?.let(::add)
+            }
+        }.onFailure { Log.w(TAG, "AGC unavailable", it) }
+        runCatching {
+            if (android.media.audiofx.NoiseSuppressor.isAvailable()) {
+                android.media.audiofx.NoiseSuppressor.create(sessionId)?.apply { enabled = true }?.let(::add)
+            }
+        }.onFailure { Log.w(TAG, "Noise suppressor unavailable", it) }
+    }
+
+    /** dB-scaled meter (-60..0 dBFS -> 0..1), so quiet speech is visible when tuning the gain. */
+    private fun meterLevel(rms: Float): Float {
+        if (rms <= 0f) return 0f
+        val db = 20f * kotlin.math.log10(rms)
+        return ((db + 60f) / 60f).coerceIn(0f, 1f)
     }
 
     private fun enqueue(out: Channel<PhraseSegmenter.Phrase>, phrase: PhraseSegmenter.Phrase) {
@@ -333,14 +399,16 @@ class LiveSessionController @Inject constructor(
                     InferenceService.isTranscribing.first { !it }
                 }
                 val started = System.currentTimeMillis()
+                // Quiet phrases are leveled to a steady loudness before decoding.
+                val decodeInput = if (_state.value.autoLevel) AudioLevel.normalizePhrase(phrase.samples) else phrase.samples
                 val result = orchestrator.ensureLiveBackend(appContext, session.backendId)
                     .mapCatching { backend ->
-                        backend.transcribeAudio(phrase.samples, sampleRate, "").getOrThrow()
+                        backend.transcribeAudio(decodeInput, sampleRate, "").getOrThrow()
                     }
                 val text = result.getOrNull()?.text?.trim().orEmpty()
                 val assignment = if (text.isNotEmpty() && speakers != null) {
                     runCatching {
-                        val embedding = speakers.embeddings.compute(phrase.samples, sampleRate)
+                        val embedding = speakers.embeddings.compute(decodeInput, sampleRate)
                         speakers.tracker.assign(embedding, weight = phrase.speechSamples.toFloat() / sampleRate)
                     }.onFailure { Log.w(TAG, "Phrase embedding failed: ${it.message}") }.getOrNull()
                 } else null
@@ -449,8 +517,10 @@ class LiveSessionController @Inject constructor(
         const val TAG = "LiveTranscription"
         const val PREFS = "live_mode"
         const val KEY_ROLES = "roles_enabled"
+        const val KEY_GAIN = "mic_gain"
+        const val KEY_SENSITIVITY = "vad_sensitivity"
+        const val KEY_AUTO_LEVEL = "auto_level"
         const val UI_UPDATE_MS = 100L
-        const val LEVEL_GAIN = 8f
         const val ROLES_MIN_PHRASE_SECONDS = 3f
     }
 }

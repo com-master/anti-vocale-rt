@@ -50,6 +50,18 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import com.antivocale.app.audio.live.AudioLevel
+import kotlin.math.roundToInt
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -184,6 +196,12 @@ fun LiveTranscriptionScreen(
                 .padding(horizontal = 16.dp),
         ) {
             StatusHeader(state, onRolesChange = viewModel::setRolesEnabled)
+            MicSettings(
+                state = state,
+                onGain = viewModel::setMicGain,
+                onSensitivity = viewModel::setSensitivity,
+                onAutoLevel = viewModel::setAutoLevel,
+            )
             Spacer(Modifier.height(8.dp))
             if (state.segments.isEmpty()) {
                 Text(
@@ -251,6 +269,64 @@ private fun speakerColor(speaker: Int): Color {
     val scheme = MaterialTheme.colorScheme
     val palette = listOf(scheme.primary, scheme.tertiary, scheme.secondary, scheme.error)
     return palette[speaker % palette.size]
+}
+
+/**
+ * Quiet-speaker controls: gain (live, before the speech detector), detector
+ * sensitivity (next session) and automatic leveling. Collapsed by default;
+ * the level meter above shows the effect of the gain while listening.
+ */
+@Composable
+private fun MicSettings(
+    state: LiveSessionController.LiveUiState,
+    onGain: (Float) -> Unit,
+    onSensitivity: (Float) -> Unit,
+    onAutoLevel: (Boolean) -> Unit,
+) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    Column(modifier = Modifier.fillMaxWidth().padding(top = 4.dp)) {
+        TextButton(onClick = { expanded = !expanded }, contentPadding = PaddingValues(0.dp)) {
+            Icon(Icons.Default.Tune, contentDescription = null)
+            Spacer(Modifier.width(6.dp))
+            Text(stringResource(R.string.live_mic_settings))
+            Spacer(Modifier.width(4.dp))
+            Icon(if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore, contentDescription = null)
+        }
+        if (!expanded) return@Column
+        Text(
+            text = stringResource(R.string.live_gain, state.micGain),
+            style = MaterialTheme.typography.labelLarge,
+        )
+        Slider(
+            value = state.micGain,
+            onValueChange = { onGain((it * 2).roundToInt() / 2f) },
+            valueRange = AudioLevel.MIN_GAIN..AudioLevel.MAX_GAIN,
+        )
+        Text(
+            text = stringResource(R.string.live_sensitivity, (state.sensitivity * 100).roundToInt()),
+            style = MaterialTheme.typography.labelLarge,
+        )
+        Slider(
+            value = state.sensitivity,
+            onValueChange = { onSensitivity((it * 20).roundToInt() / 20f) },
+            valueRange = 0f..1f,
+        )
+        if (state.isRunning) {
+            Text(
+                text = stringResource(R.string.live_sensitivity_next),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = stringResource(R.string.live_auto_level),
+                style = MaterialTheme.typography.labelLarge,
+                modifier = Modifier.weight(1f),
+            )
+            Switch(checked = state.autoLevel, onCheckedChange = onAutoLevel)
+        }
+    }
 }
 
 @Composable

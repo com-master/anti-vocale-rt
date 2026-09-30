@@ -28,6 +28,11 @@
     <string name="live_saved_history">Salvato nella Cronologia mentre parli</string>
     <string name="live_saved_file">Salvato nella Cronologia e nel file %1$s</string>
     <string name="live_error_roles">Ruoli non disponibili (il modello dei parlanti non si è caricato); si continua senza.</string>
+    <string name="live_mic_settings">Microfono</string>
+    <string name="live_gain">Guadagno: ×%1$.1f</string>
+    <string name="live_sensitivity">Sensibilità: %1$d%%</string>
+    <string name="live_sensitivity_next">La sensibilità si applica dal prossimo avvio</string>
+    <string name="live_auto_level">Livella automaticamente la voce bassa</string>
     <plurals name="live_pending">
         <item quantity="one">%d frase in coda</item>
         <item quantity="many">%d frasi in coda</item>

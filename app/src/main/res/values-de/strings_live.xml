@@ -28,6 +28,11 @@
     <string name="live_saved_history">Wird während des Sprechens im Verlauf gespeichert</string>
     <string name="live_saved_file">Im Verlauf und in der Datei %1$s gespeichert</string>
     <string name="live_error_roles">Sprecherrollen nicht verfügbar (das Sprechermodell konnte nicht geladen werden); es geht ohne sie weiter.</string>
+    <string name="live_mic_settings">Mikrofon</string>
+    <string name="live_gain">Verstärkung: ×%1$.1f</string>
+    <string name="live_sensitivity">Empfindlichkeit: %1$d%%</string>
+    <string name="live_sensitivity_next">Die Empfindlichkeit gilt ab dem nächsten Start</string>
+    <string name="live_auto_level">Leise Sprache automatisch anheben</string>
     <plurals name="live_pending">
         <item quantity="one">%d Satz in der Warteschlange</item>
         <item quantity="other">%d Sätze in der Warteschlange</item>

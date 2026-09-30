@@ -28,6 +28,11 @@
     <string name="live_saved_history">هنگام صحبت در تاریخچه ذخیره می‌شود</string>
     <string name="live_saved_file">در تاریخچه و در فایل %1$s ذخیره شد</string>
     <string name="live_error_roles">نقش‌ها در دسترس نیستند (مدل گوینده بارگیری نشد)؛ بدون آن‌ها ادامه می‌دهیم.</string>
+    <string name="live_mic_settings">میکروفون</string>
+    <string name="live_gain">تقویت: ×%1$.1f</string>
+    <string name="live_sensitivity">حساسیت: %1$d%%</string>
+    <string name="live_sensitivity_next">حساسیت از شروع بعدی اعمال می‌شود</string>
+    <string name="live_auto_level">یکسان‌سازی خودکار صدای آهسته</string>
     <plurals name="live_pending">
         <item quantity="one">%d عبارت در صف</item>
         <item quantity="other">%d عبارت در صف</item>

@@ -28,6 +28,11 @@
     <string name="live_saved_history">Zapisywane w Historii na bieżąco</string>
     <string name="live_saved_file">Zapisano w Historii i w pliku %1$s</string>
     <string name="live_error_roles">Role są niedostępne (nie udało się wczytać modelu mówców); kontynuuję bez nich.</string>
+    <string name="live_mic_settings">Mikrofon</string>
+    <string name="live_gain">Wzmocnienie: ×%1$.1f</string>
+    <string name="live_sensitivity">Czułość: %1$d%%</string>
+    <string name="live_sensitivity_next">Czułość zostanie zastosowana od następnego startu</string>
+    <string name="live_auto_level">Automatyczne wyrównanie głośności</string>
     <plurals name="live_pending">
         <item quantity="one">%d fraza w kolejce</item>
         <item quantity="few">%d frazy w kolejce</item>
